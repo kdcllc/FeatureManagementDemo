@@ -1,25 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using FeatureManagementWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using FeatureManagementWeb.Models;
+using Microsoft.FeatureManagement;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace FeatureManagementWeb.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IFeatureManagerSnapshot _featureSnapshot;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IFeatureManagerSnapshot featureSnapshot)
         {
             _logger = logger;
+            _featureSnapshot = featureSnapshot;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            ViewData["Message"] = "Welcome";
+
+            if (await _featureSnapshot.IsEnabledAsync(nameof(FeatureFlags.BrowserRenderer)))
+            {
+                ViewData["Message"] = $"Welcome! You can see this message only if '{nameof(FeatureFlags.BrowserRenderer)}' is enabled.";
+            };
+
             return View();
         }
 

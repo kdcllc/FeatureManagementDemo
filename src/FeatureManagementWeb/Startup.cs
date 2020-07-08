@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FeatureManagementWeb.FeatureFilters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.FeatureManagement;
 
@@ -24,7 +27,11 @@ namespace FeatureManagementWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Enable the use of IHttpContextAccessor
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddFeatureManagement()
+                    .AddFeatureFilter<BrowserFilter>()
                     .UseDisabledFeaturesHandler(new FeatureNotEnabledDisabledHandler());
 
             services.AddControllersWithViews();

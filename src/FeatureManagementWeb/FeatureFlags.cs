@@ -3,7 +3,8 @@
     public enum FeatureFlags
     {
         Beta,
-        Alpha
+        Alpha,
+        BrowserRenderer
     }
 
     //public static class FeatureFlags
