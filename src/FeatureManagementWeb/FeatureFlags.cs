@@ -4,7 +4,8 @@
     {
         Beta,
         Alpha,
-        BrowserRenderer
+        BrowserRenderer,
+        Cached
     }
 
     //public static class FeatureFlags

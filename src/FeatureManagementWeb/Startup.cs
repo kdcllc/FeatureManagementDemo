@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.FeatureManagement;
+using Microsoft.FeatureManagement.FeatureFilters;
 
 namespace FeatureManagementWeb
 {
@@ -28,10 +29,11 @@ namespace FeatureManagementWeb
         public void ConfigureServices(IServiceCollection services)
         {
             // Enable the use of IHttpContextAccessor
-            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpContextAccessor();
 
             services.AddFeatureManagement()
                     .AddFeatureFilter<BrowserFilter>()
+                    .AddFeatureFilter<PercentageFilter>()
                     .UseDisabledFeaturesHandler(new FeatureNotEnabledDisabledHandler());
 
             services.AddControllersWithViews();

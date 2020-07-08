@@ -1,8 +1,35 @@
-﻿@{
+﻿@inject Microsoft.FeatureManagement.IFeatureManager FeatureManager
+@inject Microsoft.FeatureManagement.IFeatureManagerSnapshot FeatureManagerSnapshot
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4"> @ViewData["Message"]</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h2 class="display-4"> @ViewData["Message"]</h2>
+    <p>This project demonstrate usage of Microsoft.FeatureManagement library .</p>
+</div>
+
+<div class="text-body">
+    <h2 class="display-4">Using IFeatureManager</h2>
+    <p>
+        <ul>
+            @for (var i = 0; i < 10; i++)
+            {
+                <li>Flag is: @await FeatureManager.IsEnabledAsync(nameof(FeatureFlags.Cached))</li>
+            }
+        </ul>
+    </p>
+</div>
+
+<div class="text-body">
+    <h2 class="display-4">Using IFeatureManagerSnapshot</h2>
+    <p>
+        <ul>
+            @for (var i = 0; i < 10; i++)
+            {
+                <li>Flag is: @await FeatureManagerSnapshot.IsEnabledAsync(nameof(FeatureFlags.Cached))</li>
+            }
+        </ul>
+    </p>
 </div>
