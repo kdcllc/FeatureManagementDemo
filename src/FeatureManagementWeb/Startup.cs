@@ -24,8 +24,6 @@ namespace FeatureManagementWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var featureSet = new string[] { nameof(FeatureFlags.Beta), nameof(FeatureFlags.Alpha) };
-
             services.AddFeatureManagement()
                     .UseDisabledFeaturesHandler(new FeatureNotEnabledDisabledHandler());
 

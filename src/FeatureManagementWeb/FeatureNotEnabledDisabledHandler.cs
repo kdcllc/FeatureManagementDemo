@@ -12,15 +12,25 @@ namespace FeatureManagementWeb
     {
         public Task HandleDisabledFeatures(IEnumerable<string> features, ActionExecutingContext context)
         {
-            var result = new ViewResult()
+            var controllerName = ((ControllerBase)context.Controller).ControllerContext.ActionDescriptor.ControllerName;
+
+            if (controllerName == "WeatherForecast")
             {
-                ViewName = "Views/Shared/FeatureNotEnabled.cshtml",
-                ViewData = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary())
-            };
+                context.Result = new NotFoundResult();
+            }
+            else
+            {
+                var result = new ViewResult()
+                {
+                    ViewName = "Views/Shared/FeatureNotEnabled.cshtml",
+                    ViewData = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary())
+                };
 
-            result.ViewData["FeatureName"] = string.Join(", ", features);
+                result.ViewData["FeatureName"] = string.Join(", ", features);
 
-            context.Result = result;
+                context.Result = result;
+            }
+
 
             return Task.CompletedTask;
         }
