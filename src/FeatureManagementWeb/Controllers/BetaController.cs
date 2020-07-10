@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using FeatureManagement.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.FeatureManagement;
 using Microsoft.FeatureManagement.Mvc;

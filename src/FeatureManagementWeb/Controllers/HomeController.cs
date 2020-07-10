@@ -1,4 +1,5 @@
-﻿using FeatureManagementWeb.Models;
+﻿using FeatureManagement.Core;
+using FeatureManagementWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.FeatureManagement;

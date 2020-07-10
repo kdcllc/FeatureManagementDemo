@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FeatureManagement.Core.AspNetCore;
 using FeatureManagementWeb.FeatureFilters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,13 +29,7 @@ namespace FeatureManagementWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Enable the use of IHttpContextAccessor
-            services.AddHttpContextAccessor();
-
-            services.AddFeatureManagement()
-                    .AddFeatureFilter<BrowserFilter>()
-                    .AddFeatureFilter<PercentageFilter>()
-                    .UseDisabledFeaturesHandler(new FeatureNotEnabledDisabledHandler());
+            services.AddFeatures();
 
             services.AddControllersWithViews();
         }

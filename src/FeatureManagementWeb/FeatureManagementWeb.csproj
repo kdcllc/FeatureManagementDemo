@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FeatureManagement.Core.AspNetCore\FeatureManagement.Core.AspNetCore.csproj" />
+  </ItemGroup>
+
 </Project>

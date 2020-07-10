@@ -6,7 +6,7 @@ using Microsoft.FeatureManagement.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace FeatureManagementWeb
+namespace FeatureManagement.Core.AspNetCore
 {
     public class FeatureNotEnabledDisabledHandler : IDisabledFeaturesHandler
     {
