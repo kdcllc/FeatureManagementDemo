@@ -2,11 +2,11 @@
 using AzureAppConfiguration.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
-using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Extensions.DependencyInjection
+namespace Microsoft.Extensions.Hosting
 {
     public static class HostBuilderExtensions
     {
@@ -18,8 +18,11 @@ namespace Microsoft.Extensions.DependencyInjection
         };
 
         public static IHostBuilder UseAzureAppConfiguration(this IHostBuilder builder,
+            string sectionName,
+            string refreshSection,
             Action<AppConfigurationConnectOptions, IConfiguration> configureConnect,
-            Action<AppConfigurationWorkerOptions, IConfiguration> configureWorker)
+            Action<AppConfigurationWorkerOptions, IConfiguration> configureWorker,
+            Action<AzureAppConfigurationOptions>? configureOptions = default)
         {
             builder.ConfigureHostConfiguration(configBuilder =>
             {
@@ -36,32 +39,34 @@ namespace Microsoft.Extensions.DependencyInjection
                     var connectOptions = new AppConfigurationConnectOptions();
                     configureConnect?.Invoke(connectOptions, context.Configuration);
 
-                    if (connectOptions.Endpoint != null)
+                    if (!string.IsNullOrEmpty(connectOptions.ConnectionString))
+                    {
+                        options.Connect(connectOptions.ConnectionString);
+                    }
+                    else if (connectOptions.Endpoint != null
+                        && string.IsNullOrEmpty(connectOptions.ConnectionString))
                     {
                         var credentials = new DefaultAzureCredential();
                         options.Connect(connectOptions.Endpoint, credentials);
                     }
 
-                    if (!string.IsNullOrEmpty(connectOptions.ConnectionString))
-                    {
-                        options.Connect(connectOptions.ConnectionString);
-                    }
-
                     // Load configuration values with no label, which means all of the configurations that are not specific to
                     // Environment
-                    //options.Select(KeyFilter.Any, LabelFilter.Null);
+                    options.Select(sectionName);
 
                     // Override with any configuration values specific to current hosting env
-                    // options.Select(KeyFilter.Any, Environments[context.HostingEnvironment.EnvironmentName]);
+                    options.Select(sectionName, Environments[context.HostingEnvironment.EnvironmentName]);
 
                     options.ConfigureRefresh(refresh =>
                      {
                          refresh
-                                .Register("Worker:Sentinel", refreshAll: true)
-                               //.Register(KeyFilter.Any, LabelFilter.Null, true)
-                                //  .Register(KeyFilter.Any, Environments[context.HostingEnvironment.EnvironmentName])
-                                .SetCacheExpiration(TimeSpan.FromSeconds(10));
+                                //.Register("Worker:Sentinel", refreshAll: true)
+                               .Register(refreshSection, refreshAll: true)
+                               .Register(refreshSection, Environments[context.HostingEnvironment.EnvironmentName], refreshAll: true)
+                               .SetCacheExpiration(TimeSpan.FromSeconds(1));
                      });
+
+                    configureOptions?.Invoke(options);
                 });
             });
 

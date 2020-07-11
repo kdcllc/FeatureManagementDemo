@@ -54,3 +54,9 @@ DotNetCore Feature Management Demo for AspNetCore and Worker templates
 - [Creating a custom feature filter](https://andrewlock.net/creating-a-custom-feature-filter-adding-feature-flags-to-an-asp-net-core-app-part-4/)
 - [Ensuring consistent feature flags across requests](https://andrewlock.net/keeping-consistent-feature-flags-across-requests-adding-feature-flags-to-an-asp-net-core-app-part-5/)
 - [Alternatives to Microsoft.FeatureManagement](https://andrewlock.net/alternatives-to-microsoft-featuremanagement/)
+
+### Other
+
+- [.NET Core Debugging with WSL 2 - Preview](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.Dot-Net-Core-Debugging-With-Wsl2)
+- [marp markdown](https://marpit.marp.app/markdown)
+- [marp-vscode](https://github.com/marp-team/marp-vscode)

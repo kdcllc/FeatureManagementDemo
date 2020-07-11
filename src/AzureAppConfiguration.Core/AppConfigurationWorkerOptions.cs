@@ -4,6 +4,6 @@ namespace AzureAppConfiguration.Core
 {
     public class AppConfigurationWorkerOptions
     {
-        public TimeSpan RefreshInterval { get; set; } = TimeSpan.FromSeconds(30);
+        public TimeSpan? RefreshInterval { get; set; } = TimeSpan.FromSeconds(30);
     }
 }

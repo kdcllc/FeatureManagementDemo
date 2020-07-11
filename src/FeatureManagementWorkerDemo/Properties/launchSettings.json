@@ -1,9 +1,17 @@
-﻿{
+{
   "profiles": {
     "FeatureManagementWorkerDemo": {
       "commandName": "Project",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "WSL 2": {
+      "commandName": "WSL2",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development",
+        "MSI_ENDPOINT": "http://localhost:5050/oauth2/token",
+        "MSI_SECRET": "3fa4177e-bdfe-47a8-986a-5ef02f840615"
       }
     }
   }

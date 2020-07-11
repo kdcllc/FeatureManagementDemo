@@ -21,6 +21,8 @@ namespace FeatureManagementWorkerDemo
         {
             return Host.CreateDefaultBuilder(args)
                         .UseAzureAppConfiguration(
+                        "WorkerApp:WorkerOptions",
+                        "WorkerApp:WorkerOptions:Message",
                         (connect, config) =>
                         {
                             config.Bind("AppConfig", connect);
@@ -31,11 +33,7 @@ namespace FeatureManagementWorkerDemo
                         })
                         .ConfigureServices((hostContext, services) =>
                         {
-                            services.AddOptions<WorkerOptions>()
-                                    .Configure<IConfiguration>((op, config) =>
-                                    {
-                                        op.Message = config.GetValue<string>("Worker:Message");
-                                    });
+                            services.AddChangeTokenOptions<WorkerOptions>("WorkerApp:WorkerOptions", configureAction: (o) => { });
 
                             services.AddHostedService<Worker>();
                         });

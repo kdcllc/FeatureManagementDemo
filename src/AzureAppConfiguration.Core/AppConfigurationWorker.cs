@@ -46,16 +46,17 @@ namespace AzureAppConfiguration.Core
         }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            while (!stoppingToken.IsCancellationRequested)
+            while (!stoppingToken.IsCancellationRequested
+                && _options.RefreshInterval != null)
             {
                 _logger.LogInformation("{name} running Refresh: {time}", nameof(AppConfigurationWorker), DateTimeOffset.Now);
 
                 foreach (var refresher in Refreshers)
                 {
-                    var result = await refresher.TryRefreshAsync();
+                    _ = refresher.TryRefreshAsync();
                 }
 
-                await Task.Delay(_options.RefreshInterval, stoppingToken);
+                await Task.Delay(_options.RefreshInterval.Value, stoppingToken);
             }
         }
     }

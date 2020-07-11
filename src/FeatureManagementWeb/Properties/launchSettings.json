@@ -1,12 +1,24 @@
-﻿{
+{
   "profiles": {
     "FeatureManagementWeb": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:5501;http://localhost:5500",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
+      },
+      "applicationUrl": "https://localhost:5501;http://localhost:5500"
+    },
+    "WSL 2": {
+      "commandName": "WSL2",
+      "launchBrowser": true,
+      "launchUrl": "https://localhost:5501",
+      "environmentVariables": {
+        "ASPNETCORE_URLS": "https://localhost:5501;http://localhost:5500",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation",
+        "MSI_ENDPOINT": "http://localhost:5050/oauth2/token",
+        "MSI_SECRET": "3fa4177e-bdfe-47a8-986a-5ef02f840615"
       }
     }
   }

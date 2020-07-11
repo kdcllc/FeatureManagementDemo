@@ -16,11 +16,24 @@ namespace FeatureManagementWeb
             CreateHostBuilder(args).Build().Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            return Host.CreateDefaultBuilder(args)
+                        .UseAzureAppConfiguration(
+                        "WebApp:AppOptions",
+                        "WebApp:AppOptions:BackgroundColor",
+                        (connect, config) =>
+                        {
+                            config.Bind("AppConfig", connect);
+                        },
+                        (interval, config) =>
+                        {
+                            interval.RefreshInterval = null; //config.GetValue<TimeSpan>("AppConfig:RefreshInterval");
+                        })
+                        .ConfigureWebHostDefaults(webBuilder =>
+                        {
+                            webBuilder.UseStartup<Startup>();
+                        });
+        }
     }
 }

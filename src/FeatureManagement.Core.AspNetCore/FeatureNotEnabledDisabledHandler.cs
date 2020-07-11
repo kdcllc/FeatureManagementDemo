@@ -10,11 +10,18 @@ namespace FeatureManagement.Core.AspNetCore
 {
     public class FeatureNotEnabledDisabledHandler : IDisabledFeaturesHandler
     {
+        private readonly NotEnabledDisabledOptions options;
+
+        public FeatureNotEnabledDisabledHandler(NotEnabledDisabledOptions options)
+        {
+            this.options = options;
+        }
+
         public Task HandleDisabledFeatures(IEnumerable<string> features, ActionExecutingContext context)
         {
             var controllerName = ((ControllerBase)context.Controller).ControllerContext.ActionDescriptor.ControllerName;
 
-            if (controllerName == "WeatherForecast")
+            if (options.ApiControllers.Contains(controllerName))
             {
                 context.Result = new NotFoundResult();
             }
@@ -22,12 +29,11 @@ namespace FeatureManagement.Core.AspNetCore
             {
                 var result = new ViewResult()
                 {
-                    ViewName = "Views/Shared/FeatureNotEnabled.cshtml",
+                    ViewName = options.DefaultMvcViewPath,
                     ViewData = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary())
                 };
 
                 result.ViewData["FeatureName"] = string.Join(", ", features);
-
                 context.Result = result;
             }
 

@@ -1,19 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FeatureManagement.Core.AspNetCore;
-using FeatureManagementWeb.FeatureFilters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.FeatureManagement;
-using Microsoft.FeatureManagement.FeatureFilters;
 
 namespace FeatureManagementWeb
 {
@@ -29,7 +19,15 @@ namespace FeatureManagementWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddFeatures();
+            services.AddOptions<AppOptions>()
+                    .Configure<IConfiguration>((options, config) =>
+                    {
+                        config.Bind("WebApp:AppOptions", options);
+                    });
+
+            services.AddFeatureManagement()
+                    .AddDefaultFeatureManagement()
+                    .AddAspNetCoreFeatures(options => options.ApiControllers.Add("WeatherForecast"));
 
             services.AddControllersWithViews();
         }
@@ -47,6 +45,9 @@ namespace FeatureManagementWeb
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseAzureAppConfiguration();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
