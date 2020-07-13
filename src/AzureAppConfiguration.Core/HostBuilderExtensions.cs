@@ -55,6 +55,7 @@ namespace Microsoft.Extensions.Hosting
         /// The name of the configuration that is to be registered with Refresh values from Azure App Configuration provider.
         /// </param>
         /// <param name="configureAzureAppConfigOptions">
+        /// The delegate that can overide the precious configurations.
         /// </param>
         /// <param name="configureConnect">
         /// The delegate action to configure <see cref="AppConfigurationConnectOptions"/>.

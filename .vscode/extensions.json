@@ -8,6 +8,7 @@
       "ms-vscode.vscode-node-azure-pack",
       "streetsidesoftware.code-spell-checker",
       "formulahendry.dotnet-test-explorer",
-      "eamodio.gitlens"
+      "eamodio.gitlens",
+      "marp-team.marp-vscode"
     ]
   }

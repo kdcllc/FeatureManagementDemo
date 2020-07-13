@@ -15,7 +15,6 @@ namespace FeatureManagementWorkerDemo
     public class Worker : BackgroundService
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly IFeatureManagerSnapshot _featureManager;
         private readonly ILogger<Worker> _logger;
         private WorkerOptions _options;
 
