@@ -1,12 +1,13 @@
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using System;
 using System.Threading.Tasks;
 
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.FeatureManagement;
+
 namespace FeatureManagementWorkerDemo
 {
-    public class Program
+    public sealed class Program
     {
         public static async Task Main(string[] args)
         {
@@ -23,17 +24,21 @@ namespace FeatureManagementWorkerDemo
                         .UseAzureAppConfiguration(
                         "WorkerApp:WorkerOptions",
                         "WorkerApp:WorkerOptions:Message",
-                        (connect, config) =>
+                        options =>
                         {
-                            config.Bind("AppConfig", connect);
-                        },
-                        (interval, config) =>
-                        {
-                            interval.RefreshInterval = config.GetValue<TimeSpan>("AppConfig:RefreshInterval");
+                            options.UseFeatureFlags(flags =>
+                            {
+                                flags.CacheExpirationTime = TimeSpan.FromSeconds(1);
+                            });
                         })
                         .ConfigureServices((hostContext, services) =>
                         {
-                            services.AddChangeTokenOptions<WorkerOptions>("WorkerApp:WorkerOptions", configureAction: (o) => { });
+                            services.AddFeatureManagement()
+                                    .AddDefaultFeatureManagement();
+
+                            services.AddOptionsWithChangeToken<WorkerOptions>(
+                                "WorkerApp:WorkerOptions",
+                                configureAction: (o) => { });
 
                             services.AddHostedService<Worker>();
                         });

@@ -1,21 +1,20 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace AzureAppConfiguration.Core
 {
     public class AppConfigurationWorker : BackgroundService
     {
-        private AppConfigurationWorkerOptions _options;
         private readonly ILogger<AppConfigurationWorker> _logger;
-
-        public List<IConfigurationRefresher> Refreshers { get; }
+        private AppConfigurationWorkerOptions _options;
 
         public AppConfigurationWorker(
             IOptionsMonitor<AppConfigurationWorkerOptions> optionsMonitor,
@@ -27,9 +26,8 @@ namespace AzureAppConfiguration.Core
             optionsMonitor.OnChange(n => _options = n);
 
             Refreshers = new List<IConfigurationRefresher>();
-            var configurationRoot = configuration as IConfigurationRoot;
 
-            if (configurationRoot == null)
+            if (!(configuration is IConfigurationRoot configurationRoot))
             {
                 throw new InvalidOperationException("Unable to access the Azure App Configuration provider. Please ensure that it has been configured correctly.");
             }
@@ -44,6 +42,9 @@ namespace AzureAppConfiguration.Core
 
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
+
+        public List<IConfigurationRefresher> Refreshers { get; }
+
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested

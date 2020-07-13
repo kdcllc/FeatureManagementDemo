@@ -1,28 +1,78 @@
-﻿using Azure.Identity;
+﻿using System;
+using System.Collections.Generic;
+
+using Azure.Identity;
+
 using AzureAppConfiguration.Core;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 
 namespace Microsoft.Extensions.Hosting
 {
     public static class HostBuilderExtensions
     {
-        internal static readonly Dictionary<string, string> Environments = new Dictionary<string, string>
+        private static readonly string AppConfig = nameof(AppConfig);
+
+        private static readonly Dictionary<string, string> Environments = new Dictionary<string, string>
         {
             { "Development", "dev" },
             { "Staging", "qa" },
             { "Production", "prod" }
         };
 
-        public static IHostBuilder UseAzureAppConfiguration(this IHostBuilder builder,
-            string sectionName,
-            string refreshSection,
-            Action<AppConfigurationConnectOptions, IConfiguration> configureConnect,
-            Action<AppConfigurationWorkerOptions, IConfiguration> configureWorker,
-            Action<AzureAppConfigurationOptions>? configureOptions = default)
+        /// <summary>
+        /// Adds Azure App Configuration Provider to <see cref="IHost"/> with ability to refresh the values.
+        /// In addition the dev, qa and prod environment labels are registered with <see cref="IConfiguration"/> provider.
+        /// </summary>
+        /// <example>
+        /// <![CDATA[
+        /// return Host.CreateDefaultBuilder(args)
+        ///            .UseAzureAppConfiguration(
+        /// "WorkerApp:WorkerOptions",
+        ///            "WorkerApp:WorkerOptions:Message",
+        ///            (connect, config) =>
+        ///            {
+        ///    config.Bind("AppConfig", connect);
+        ///    },
+        ///                    (interval, config) =>
+        ///                    {
+        ///                        interval.RefreshInterval = config.GetValue<TimeSpan>("AppConfig:RefreshInterval");
+        ///                    })
+        ///                    .ConfigureServices((hostContext, services) =>
+        ///                    {
+        ///    services.AddOptionsWithChangeToken<WorkerOptions>("WorkerApp:WorkerOptions", configureAction: (o) => { });
+        ///    services.AddHostedService<Worker>();
+        /// });
+        /// ]]>
+        /// </example>
+        /// <param name="builder">The <see cref="IHostBuilder"/> builder.</param>
+        /// <param name="appConfigiSectionName">
+        /// The name of the configuration section that is to be registered to be retrieved from Azure App Configuration provider.
+        /// </param>
+        /// <param name="appConfigRefreshSectionName">
+        /// The name of the configuration that is to be registered with Refresh values from Azure App Configuration provider.
+        /// </param>
+        /// <param name="configureAzureAppConfigOptions">
+        /// </param>
+        /// <param name="configureConnect">
+        /// The delegate action to configure <see cref="AppConfigurationConnectOptions"/>.
+        /// This options provides with ability to configure method of authentication for the Azure.Idenity.
+        /// If connection string is present it utilizes the full connection string; otherwise it will rely on Microsoft Managed Identity (MSI).
+        /// </param>
+        /// <param name="configureWorker">
+        /// The delegate action to configure <see cref="AppConfigurationWorkerOptions"/>.
+        /// This options provides with ability to trigger the refresh for registered options at specify interval.
+        /// </param>
+        /// <returns></returns>
+        public static IHostBuilder UseAzureAppConfiguration(
+            this IHostBuilder builder,
+            string appConfigiSectionName,
+            string appConfigRefreshSectionName,
+            Action<AzureAppConfigurationOptions>? configureAzureAppConfigOptions = default,
+            Action<AppConfigurationConnectOptions, IConfiguration>? configureConnect = default,
+            Action<AppConfigurationWorkerOptions, IConfiguration>? configureWorker = default)
         {
             builder.ConfigureHostConfiguration(configBuilder =>
             {
@@ -36,7 +86,9 @@ namespace Microsoft.Extensions.Hosting
 
                 configBuilder.AddAzureAppConfiguration(options =>
                 {
+                    // create connection options
                     var connectOptions = new AppConfigurationConnectOptions();
+                    context.Configuration.Bind(AppConfig, connectOptions);
                     configureConnect?.Invoke(connectOptions, context.Configuration);
 
                     if (!string.IsNullOrEmpty(connectOptions.ConnectionString))
@@ -52,32 +104,28 @@ namespace Microsoft.Extensions.Hosting
 
                     // Load configuration values with no label, which means all of the configurations that are not specific to
                     // Environment
-                    options.Select(sectionName);
+                    options.Select(appConfigiSectionName);
 
                     // Override with any configuration values specific to current hosting env
-                    options.Select(sectionName, Environments[context.HostingEnvironment.EnvironmentName]);
+                    options.Select(appConfigiSectionName, Environments[context.HostingEnvironment.EnvironmentName]);
 
                     options.ConfigureRefresh(refresh =>
-                     {
-                         refresh
-                                //.Register("Worker:Sentinel", refreshAll: true)
-                               .Register(refreshSection, refreshAll: true)
-                               .Register(refreshSection, Environments[context.HostingEnvironment.EnvironmentName], refreshAll: true)
-                               .SetCacheExpiration(TimeSpan.FromSeconds(1));
-                     });
+                    {
+                        refresh
+                            .Register(appConfigRefreshSectionName, refreshAll: true)
+                            .Register(appConfigRefreshSectionName, Environments[context.HostingEnvironment.EnvironmentName], refreshAll: true)
+                            .SetCacheExpiration(TimeSpan.FromSeconds(1));
+                    });
 
-                    configureOptions?.Invoke(options);
+                    configureAzureAppConfigOptions?.Invoke(options);
                 });
             });
 
             builder.ConfigureServices((context, services) =>
             {
-                services
-                        .AddOptions<AppConfigurationWorkerOptions>()
-                        .Configure(options =>
-                        {
-                            configureWorker?.Invoke(options, context.Configuration);
-                        });
+                services.AddOptionsWithChangeToken<AppConfigurationWorkerOptions>(
+                    AppConfig,
+                    configureAction: options => configureWorker?.Invoke(options, context.Configuration));
 
                 services.AddHostedService<AppConfigurationWorker>();
             });

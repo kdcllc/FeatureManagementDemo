@@ -19,3 +19,25 @@ Make sure that Azure AD User assigned `App Configuration Data Reader` permission
     az appconfig credential list -n featuremanagementworkshop -g [your-resource-group] -o json
 
 ```
+
+```csharp
+
+ return Host.CreateDefaultBuilder(args)
+                        .UseAzureAppConfiguration(
+                        "WorkerApp:WorkerOptions",
+                        "WorkerApp:WorkerOptions:Message",
+                        (connect, config) =>
+                        {
+                            config.Bind("AppConfig", connect);
+                        },
+                        (interval, config) =>
+                        {
+                            interval.RefreshInterval = config.GetValue<TimeSpan>("AppConfig:RefreshInterval");
+                        })
+                        .ConfigureServices((hostContext, services) =>
+                        {
+                            services.AddOptionsWithChangeToken<WorkerOptions>("WorkerApp:WorkerOptions", configureAction: (o) => { });
+
+                            services.AddHostedService<Worker>();
+                        });
+```

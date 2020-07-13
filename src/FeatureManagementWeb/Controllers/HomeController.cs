@@ -1,11 +1,14 @@
-﻿using FeatureManagement.Core;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
+
+using FeatureManagement.Core;
+
 using FeatureManagementWeb.Models;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.FeatureManagement;
-using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace FeatureManagementWeb.Controllers
 {
@@ -34,7 +37,7 @@ namespace FeatureManagementWeb.Controllers
             if (await _featureSnapshot.IsEnabledAsync(nameof(FeatureFlags.BrowserRenderer)))
             {
                 ViewData["Message"] = $"Welcome! You can see this message only if '{nameof(FeatureFlags.BrowserRenderer)}' is enabled.";
-            };
+            }
 
             return View();
         }

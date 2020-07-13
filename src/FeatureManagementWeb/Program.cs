@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace FeatureManagementWeb
 {
-    public class Program
+    public sealed class Program
     {
         public static void Main(string[] args)
         {
@@ -22,13 +17,15 @@ namespace FeatureManagementWeb
                         .UseAzureAppConfiguration(
                         "WebApp:AppOptions",
                         "WebApp:AppOptions:BackgroundColor",
+                        _ => { },
                         (connect, config) =>
                         {
                             config.Bind("AppConfig", connect);
                         },
                         (interval, config) =>
                         {
-                            interval.RefreshInterval = null; //config.GetValue<TimeSpan>("AppConfig:RefreshInterval");
+                            // specifying null doesn't enable AppConfigurationWorker
+                            interval.RefreshInterval = null;
                         })
                         .ConfigureWebHostDefaults(webBuilder =>
                         {

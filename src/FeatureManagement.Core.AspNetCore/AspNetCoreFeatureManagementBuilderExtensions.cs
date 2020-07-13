@@ -1,14 +1,16 @@
-﻿using FeatureManagement.Core.AspNetCore;
+﻿using System;
+
+using FeatureManagement.Core.AspNetCore;
 using FeatureManagement.Core.AspNetCore.FeatureFilters;
+
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace Microsoft.FeatureManagement
 {
     public static class AspNetCoreFeatureManagementBuilderExtensions
     {
         /// <summary>
-        /// Adds functionality for MVC and also API Controllers: ViewData["FeatureName"]
+        /// Adds functionality for MVC and also API Controllers: ViewData["FeatureName"].
         /// </summary>
         /// <param name="builder"></param>
         /// <param name="configure"></param>

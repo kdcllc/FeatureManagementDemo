@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.FeatureManagement;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.FeatureManagement;
 
 namespace FeatureManagement.Core.AspNetCore.FeatureFilters
 {
@@ -23,7 +24,7 @@ namespace FeatureManagement.Core.AspNetCore.FeatureFilters
 
         public Task<bool> EvaluateAsync(FeatureFilterEvaluationContext context)
         {
-            BrowserFilterSettings settings = context.Parameters.Get<BrowserFilterSettings>() ?? new BrowserFilterSettings();
+            var settings = context.Parameters.Get<BrowserFilterSettings>() ?? new BrowserFilterSettings();
 
             if (settings.AllowedBrowsers.Any(browser => browser.Equals(Chrome, StringComparison.OrdinalIgnoreCase)) && IsChrome())
             {
