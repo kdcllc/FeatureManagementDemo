@@ -22,9 +22,9 @@ namespace FeatureManagementWorkerDemo
         {
             return Host.CreateDefaultBuilder(args)
                         .UseAzureAppConfiguration(
-                        "WorkerApp:WorkerOptions",
-                        "WorkerApp:WorkerOptions:Message",
-                        options =>
+                        "WorkerApp:WorkerOptions*",
+                        "WorkerApp:WorkerOptions:Flag",
+                        configureAzureAppConfigOptions: options =>
                         {
                             options.UseFeatureFlags(flags =>
                             {
@@ -38,7 +38,7 @@ namespace FeatureManagementWorkerDemo
 
                             services.AddOptionsWithChangeToken<WorkerOptions>(
                                 "WorkerApp:WorkerOptions",
-                                configureAction: (o) => { });
+                                configureOptions: (o) => { });
 
                             services.AddHostedService<Worker>();
                         });

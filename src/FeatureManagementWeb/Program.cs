@@ -1,5 +1,6 @@
+using System;
+
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
 namespace FeatureManagementWeb
@@ -14,9 +15,16 @@ namespace FeatureManagementWeb
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
-                        // .UseAzureAppConfiguration(
-                        // "WebApp:AppOptions",
-                        // "WebApp:AppOptions")
+                        .UseAzureAppConfiguration(
+                             "WebApp:AppOptions*",
+                             "WebApp:AppOptions:Flag",
+                             configureAzureAppConfigOptions: options =>
+                             {
+                                 options.UseFeatureFlags(flags =>
+                                 {
+                                     flags.CacheExpirationTime = TimeSpan.FromSeconds(1);
+                                 });
+                             })
                         .ConfigureWebHostDefaults(webBuilder =>
                         {
                             webBuilder.UseStartup<Startup>();

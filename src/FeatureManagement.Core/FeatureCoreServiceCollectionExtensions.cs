@@ -12,7 +12,7 @@ namespace Microsoft.Extensions.DependencyInjection
             this IServiceCollection services,
             string sectionName,
             string? optionName = default,
-            Action<TOptions>? configureAction = default) where TOptions : class, new()
+            Action<TOptions>? configureOptions = default) where TOptions : class, new()
         {
             // configure changeable configurations
             services.RegisterInternal<TOptions>(sectionName, optionName);
@@ -25,7 +25,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     var configuration = sp.GetRequiredService<IConfiguration>();
                     configuration.Bind(sectionName, options);
 
-                    configureAction?.Invoke(options);
+                    configureOptions?.Invoke(options);
                 });
             }));
 
@@ -33,7 +33,7 @@ namespace Microsoft.Extensions.DependencyInjection
             // and run the customization afterwards
             services
                 .AddOptions<TOptions>(optionName)
-                .Configure(options => configureAction?.Invoke(options));
+                .Configure(options => configureOptions?.Invoke(options));
 
             return services;
         }

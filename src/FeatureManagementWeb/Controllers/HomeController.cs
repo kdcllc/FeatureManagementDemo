@@ -33,6 +33,7 @@ namespace FeatureManagementWeb.Controllers
             ViewData["Message"] = "Welcome";
 
             ViewData["BackgroundColor"] = _options.BackgroundColor;
+            ViewData["OptionsMessage"] = _options.Message;
 
             if (await _featureSnapshot.IsEnabledAsync(nameof(FeatureFlags.BrowserRenderer)))
             {

@@ -103,6 +103,8 @@ namespace Microsoft.Extensions.Hosting
                         options.Connect(connectOptions.Endpoint, credentials);
                     }
 
+                    options.ConfigureClientOptions(clientOptions => clientOptions.Retry.MaxRetries = 5);
+
                     // Load configuration values with no label, which means all of the configurations that are not specific to
                     // Environment
                     options.Select(appConfigiSectionName);
@@ -126,7 +128,7 @@ namespace Microsoft.Extensions.Hosting
             {
                 services.AddOptionsWithChangeToken<AppConfigurationWorkerOptions>(
                     AppConfig,
-                    configureAction: options => configureWorker?.Invoke(options, context.Configuration));
+                    configureOptions: options => configureWorker?.Invoke(options, context.Configuration));
 
                 services.AddHostedService<AppConfigurationWorker>();
             });

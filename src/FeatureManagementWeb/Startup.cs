@@ -1,9 +1,15 @@
+using System;
+using System.IO;
+using System.Reflection;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.FeatureManagement;
+
+using Swashbuckle.AspNetCore.Filters;
 
 namespace FeatureManagementWeb
 {
@@ -19,17 +25,25 @@ namespace FeatureManagementWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddOptions<AppOptions>()
-                    .Configure<IConfiguration>((options, config) =>
-                    {
-                        config.Bind("WebApp:AppOptions", options);
-                    });
+            services.AddOptionsWithChangeToken<AppOptions>("WebApp:AppOptions", configureOptions: options => { });
 
             services.AddFeatureManagement()
                     .AddDefaultFeatureManagement()
                     .AddAspNetCoreFeatures(options => options.ApiControllers.Add("WeatherForecast"));
 
             services.AddControllersWithViews();
+
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            // https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-3.1&tabs=visual-studio-code
+            services.AddSwaggerGen(options =>
+            {
+                options.DocumentFilter<FeatureManagementFilter>();
+
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +65,16 @@ namespace FeatureManagementWeb
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", nameof(FeatureManagementWeb));
+            });
 
             app.UseRouting();
 
