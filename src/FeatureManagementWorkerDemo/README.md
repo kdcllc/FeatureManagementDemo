@@ -18,6 +18,8 @@ Make sure that Azure AD User assigned `App Configuration Data Reader` permission
 
     az appconfig credential list -n featuremanagementworkshop -g [your-resource-group] -o json
 
+    az appconfig kv list -n featuremanagementworkshop -o table
+
 ```
 
 ```csharp

@@ -117,6 +117,7 @@ Add `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` to `_ViewImports.csht
         </li>
     </feature>
 ```
+---
 
 # `AzureAppConfiguration`
 

@@ -8,7 +8,7 @@
             "name": ".NET Core Launch (console)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build-woker",
+            "preLaunchTask": "build-worker",
             "program": "${workspaceFolder}/src/FeatureManagementWorkerDemo/bin/Debug/netcoreapp3.1/FeatureManagementWorkerDemo.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/FeatureManagementWorkerDemo",

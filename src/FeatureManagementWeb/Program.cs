@@ -14,19 +14,9 @@ namespace FeatureManagementWeb
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
-                        .UseAzureAppConfiguration(
-                        "WebApp:AppOptions",
-                        "WebApp:AppOptions:BackgroundColor",
-                        _ => { },
-                        (connect, config) =>
-                        {
-                            config.Bind("AppConfig", connect);
-                        },
-                        (interval, config) =>
-                        {
-                            // specifying null doesn't enable AppConfigurationWorker
-                            interval.RefreshInterval = null;
-                        })
+                        // .UseAzureAppConfiguration(
+                        // "WebApp:AppOptions",
+                        // "WebApp:AppOptions")
                         .ConfigureWebHostDefaults(webBuilder =>
                         {
                             webBuilder.UseStartup<Startup>();
