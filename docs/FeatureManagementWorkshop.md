@@ -17,6 +17,47 @@ Feature Management And Azure AppConfiguration
 
 ---
 
+# Release Features/Toggles
+
+- **Code branch management**
+
+- **Instant kill switch**
+
+- **Test in production**
+
+- **Flighting**
+
+- **Selective activation**
+
+---
+
+# Overview
+
+![image](./images/iconfiguration.jpg)
+
+---
+
+# Nuget packages
+
+Features
+
+- `Microsoft.FeatureManagement` (Console)
+- `Microsoft.FeatureManagement.AspNetCore`
+
+Features and Config (Storage)
+
+- `Microsoft.Extensions.Configuration.AzureAppConfiguration` (Console)
+- `Microsoft.Azure.AppConfiguration.AspNetCore`
+
+---
+
+# Demos
+
+- Worker: console app can be windows or linux service or K8s cron/process
+- AspNetCore: web applications
+
+---
+
 # `IConfiguration` Infrastructure
 
 Configuration providers implement `IConfiguration` interface and thus raise an event if source has changed via `IConfiguration.GetReloadToken()`.
@@ -42,6 +83,7 @@ The infrastructure library that manages creation and execution of Features.
 * `ITargetingContext` (User, Groups)
 
 ---
+
 # Configuration
 
 ```json
@@ -150,6 +192,5 @@ Add the following to `IHost`
 
 ---
 
-# Questions?
+# Questions :satisfied:?
 
-:satisfied:

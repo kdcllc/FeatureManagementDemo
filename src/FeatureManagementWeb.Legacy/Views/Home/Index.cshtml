@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@model FeatureManagementWeb.Legacy.Models.IndexViewModel
+
+<div class="jumbotron">
+    <h1>FeatureManagementWeb.Legacy</h1>
+    <p class="lead">ASP.NET MVC4 and WebApi example how utilize Microsoft.FeatureManagement and Microsoft.Extensions.Configuration.AzureAppConfiguration</p>
+    <p><a href="https://github.com/microsoft/FeatureManagement-Dotnet" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Microsoft.FeatureManagement</h2>
+        <p>
+            Feature flags provide a way for ASP.NET Core applications to turn features on or off dynamically.
+            Developers can use feature flags in simple use cases like conditional statements to more advanced scenarios like conditionally adding routes or MVC filters.
+            Feature flags build on top of the .NET Core configuration system. Any .NET Core configuration provider is capable of acting as the back-bone for feature flags.
+        </p>
+        <p><a class="btn btn-default" href="https://github.com/microsoft/FeatureManagement-Dotnet">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-6">
+        <h2>Microsoft.Extensions.Configuration.AzureAppConfiguration</h2>
+        <p>
+            The Azure App Configuration provider for .NET Core enables developers to configure their applications using centralized configuration located in Azure App Configuration.
+            The API design follows the patterns outlined by the ASP.NET configuration system to make switching to Azure App Configuration a familiar experience.
+        </p>
+        <p><a class="btn btn-default" href="https://github.com/Azure/AppConfiguration-DotnetProvider">Learn more &raquo;</a></p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="alert alert-success" role="alert">
+            <p>Has IConfiguration Changed:  @ViewData["Message"]?</p>
+
+            <p>@Model.Options.Message</p>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="alert alert-success" role="alert">
+            @Model.Options.TextValue
+        </div>
+    </div>
+</div>

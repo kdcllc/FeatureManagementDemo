@@ -120,6 +120,8 @@ namespace Microsoft.Extensions.Hosting
                             .SetCacheExpiration(TimeSpan.FromSeconds(1));
                     });
 
+                    options.UseFeatureFlags(flag => flag.Label = Environments[context.HostingEnvironment.EnvironmentName]);
+
                     configureAzureAppConfigOptions?.Invoke(options);
                 });
             });
