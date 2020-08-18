@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 using Bet.AspNet.FeatureManagement;
 
@@ -7,7 +6,6 @@ using FeatureManagementWeb.Legacy.Models;
 using FeatureManagementWeb.Legacy.Options;
 using FeatureManagementWeb.Legacy.Service;
 
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.FeatureManagement;
 
@@ -21,13 +19,14 @@ namespace FeatureManagementWeb.Legacy.Controllers
 
         public HomeController(
             IOptionsMonitor<AppOptions> optionsMonitor,
+            IFeatureManagerSnapshot featureManagerSnapshot,
             ConfigurationService optionsService)
         {
             _options = optionsMonitor.CurrentValue;
             optionsMonitor.OnChange(n => _options = n);
 
             _optionsService = optionsService;
-            _featureManager = Get();
+            _featureManager = featureManagerSnapshot;
         }
 
         public ActionResult Index()
@@ -50,18 +49,6 @@ namespace FeatureManagementWeb.Legacy.Controllers
             var model = new BaseViewModel(_featureManager);
 
             return View(model);
-        }
-
-        private IFeatureManagerSnapshot Get()
-        {
-            using (var scope = HttpRuntime.WebObjectActivator.CreateScope())
-            {
-                if (scope != null)
-                {
-                    return scope.ServiceProvider.GetRequiredService<IFeatureManagerSnapshot>();
-                }
-            }
-            return null;
         }
     }
 }

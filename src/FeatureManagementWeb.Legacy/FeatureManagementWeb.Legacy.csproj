@@ -57,75 +57,75 @@
     <Reference Include="Azure.Security.KeyVault.Secrets, Version=4.0.1.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
       <HintPath>packages\Azure.Security.KeyVault.Secrets.4.0.1\lib\netstandard2.0\Azure.Security.KeyVault.Secrets.dll</HintPath>
     </Reference>
-    <Reference Include="Bet.AspNet.DependencyInjection.Legacy, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bet.AspNet.DependencyInjection.Legacy.1.1.0\lib\net472\Bet.AspNet.DependencyInjection.Legacy.dll</HintPath>
+    <Reference Include="Bet.AspNet.DependencyInjection.Legacy, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bet.AspNet.DependencyInjection.Legacy.1.2.1\lib\net472\Bet.AspNet.DependencyInjection.Legacy.dll</HintPath>
     </Reference>
-    <Reference Include="Bet.AspNet.FeatureManagement, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bet.AspNet.FeatureManagement.1.1.0\lib\net472\Bet.AspNet.FeatureManagement.dll</HintPath>
+    <Reference Include="Bet.AspNet.FeatureManagement, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bet.AspNet.FeatureManagement.1.2.1\lib\net472\Bet.AspNet.FeatureManagement.dll</HintPath>
     </Reference>
-    <Reference Include="Bet.AspNet.LegacyHosting, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bet.AspNet.LegacyHosting.1.1.0\lib\net472\Bet.AspNet.LegacyHosting.dll</HintPath>
+    <Reference Include="Bet.AspNet.LegacyHosting, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bet.AspNet.LegacyHosting.1.2.1\lib\net472\Bet.AspNet.LegacyHosting.dll</HintPath>
     </Reference>
-    <Reference Include="Bet.AspNet.LegacyHosting.AzureAppConfiguration, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bet.AspNet.LegacyHosting.AzureAppConfiguration.1.1.0\lib\net472\Bet.AspNet.LegacyHosting.AzureAppConfiguration.dll</HintPath>
+    <Reference Include="Bet.AspNet.LegacyHosting.AzureAppConfiguration, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bet.AspNet.LegacyHosting.AzureAppConfiguration.1.2.1\lib\net472\Bet.AspNet.LegacyHosting.AzureAppConfiguration.dll</HintPath>
     </Reference>
-    <Reference Include="Bet.Extensions.LegacyHosting, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bet.Extensions.LegacyHosting.1.1.0\lib\netstandard2.0\Bet.Extensions.LegacyHosting.dll</HintPath>
+    <Reference Include="Bet.Extensions.LegacyHosting, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bet.Extensions.LegacyHosting.1.2.1\lib\netstandard2.0\Bet.Extensions.LegacyHosting.dll</HintPath>
     </Reference>
-    <Reference Include="Bet.Extensions.LegacyHosting.Abstractions, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bet.Extensions.LegacyHosting.Abstractions.1.1.0\lib\netstandard2.0\Bet.Extensions.LegacyHosting.Abstractions.dll</HintPath>
+    <Reference Include="Bet.Extensions.LegacyHosting.Abstractions, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bet.Extensions.LegacyHosting.Abstractions.1.2.1\lib\netstandard2.0\Bet.Extensions.LegacyHosting.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Bet.Extensions.Options, Version=3.1.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bet.Extensions.Options.3.1.5\lib\netstandard2.0\Bet.Extensions.Options.dll</HintPath>
+    <Reference Include="Bet.Extensions.Options, Version=3.1.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bet.Extensions.Options.3.1.7\lib\netstandard2.0\Bet.Extensions.Options.dll</HintPath>
     </Reference>
-    <Reference Include="Bet.Extensions.Options.Legacy, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Bet.Extensions.Options.Legacy.1.1.0\lib\netstandard2.0\Bet.Extensions.Options.Legacy.dll</HintPath>
+    <Reference Include="Bet.Extensions.Options.Legacy, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bet.Extensions.Options.Legacy.1.2.1\lib\netstandard2.0\Bet.Extensions.Options.Legacy.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Extensions.Configuration, Version=3.1.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Extensions.Configuration.3.1.5\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Configuration.3.1.7\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=3.1.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Extensions.Configuration.Abstractions.3.1.5\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Configuration.Abstractions.3.1.7\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Configuration.AzureAppConfiguration, Version=3.0.2.0, Culture=neutral, PublicKeyToken=69dad7634abb75e4, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.Configuration.AzureAppConfiguration.3.0.2\lib\netstandard2.0\Microsoft.Extensions.Configuration.AzureAppConfiguration.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=3.1.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Extensions.Configuration.Binder.3.1.5\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Configuration.Binder.3.1.7\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Configuration.FileExtensions, Version=3.1.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Extensions.Configuration.FileExtensions.3.1.5\lib\netstandard2.0\Microsoft.Extensions.Configuration.FileExtensions.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Configuration.FileExtensions, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Configuration.FileExtensions.3.1.7\lib\netstandard2.0\Microsoft.Extensions.Configuration.FileExtensions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Configuration.Json, Version=3.1.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Extensions.Configuration.Json.3.1.5\lib\netstandard2.0\Microsoft.Extensions.Configuration.Json.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Configuration.Json, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Configuration.Json.3.1.7\lib\netstandard2.0\Microsoft.Extensions.Configuration.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=3.1.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Extensions.DependencyInjection.3.1.5\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.3.1.7\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=3.1.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.3.1.5\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.3.1.7\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=3.1.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Extensions.FileProviders.Abstractions.3.1.5\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.FileProviders.Abstractions.3.1.7\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.FileProviders.Physical, Version=3.1.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Extensions.FileProviders.Physical.3.1.5\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Physical.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.FileProviders.Physical, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.FileProviders.Physical.3.1.7\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Physical.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.FileSystemGlobbing, Version=3.1.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Extensions.FileSystemGlobbing.3.1.5\lib\netstandard2.0\Microsoft.Extensions.FileSystemGlobbing.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.FileSystemGlobbing, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.FileSystemGlobbing.3.1.7\lib\netstandard2.0\Microsoft.Extensions.FileSystemGlobbing.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Logging, Version=3.1.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Extensions.Logging.3.1.5\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Logging, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Logging.3.1.7\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=3.1.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Extensions.Logging.Abstractions.3.1.5\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Logging.Abstractions.3.1.7\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Options, Version=3.1.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Extensions.Options.3.1.5\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Options, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Options.3.1.7\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Options.ConfigurationExtensions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.Options.ConfigurationExtensions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll</HintPath>
@@ -133,8 +133,8 @@
     <Reference Include="Microsoft.Extensions.Options.DataAnnotations, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.Options.DataAnnotations.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.DataAnnotations.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Extensions.Primitives.3.1.5\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Primitives.3.1.7\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.FeatureManagement, Version=2.0.0.0, Culture=neutral, PublicKeyToken=69dad7634abb75e4, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.FeatureManagement.2.0.0\lib\netstandard2.0\Microsoft.FeatureManagement.dll</HintPath>
@@ -358,6 +358,26 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Bet.AspNet.DependencyInjection.Legacy">
+      <Version>1.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="Bet.AspNet.FeatureManagement">
+      <Version>1.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="Bet.AspNet.LegacyHosting">
+      <Version>1.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="Bet.AspNet.LegacyHosting.AzureAppConfiguration">
+      <Version>1.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="Bet.Extensions.LegacyHosting">
+      <Version>1.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

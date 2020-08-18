@@ -22,24 +22,9 @@ namespace FeatureManagementWeb.Legacy
         {
             var builder = WebHost.CreateDefaultBuilder<Startup>()
 
-                                // requires to have configuration for Azure App Configurations
-                                .UseAzureAppConfiguration(
-                                 "WebApp:AppOptions*",
-                                 "WebApp:AppOptions:Flag",
-                                 configureAzureAppConfigOptions:
-                                 (options, connect, config) =>
-                                 {
-                                     options.UseFeatureFlags(flags =>
-                                     {
-                                         flags.Label = "dev";
-                                         flags.CacheExpirationTime = connect.CacheIntervalForFeatures;
-                                     });
-                                 })
-                                //.ConfigureAppConfiguration((context, configBuilder) =>
-                                //{
-                                //    // overrides
-                                //    configBuilder.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-                                //})
+                                 // requires to have configuration for Azure App Configurations
+                                .UseAzureAppConfiguration("WebApp:AppOptions*", "WebApp:AppOptions:Flag")
+
                                 .ConfigureServices((context, services) =>
                                 {
                                     services.AddChangeTokenOptions<AppOptions>("AppOptions", configureAction: (_) => { });
